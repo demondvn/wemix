@@ -1,0 +1,22 @@
+version: '3'
+services:
+  wemix-app:
+    #image:   # Replace with the name of your Docker image
+    build:
+      context: .  # Path to the directory containing your Dockerfile
+      dockerfile: Dockerfile        # Name of your Dockerfile
+    ports:
+      - "8589:8589"
+      - "8588:8588"
+      - "8598:8598"
+    volumes:
+      - /mnt/blockstore/wemix:/root/geth
+    environment:
+      - GWEMIX_HOME=/wemix/
+      - PORT=8588
+      - DISCOVER=1
+      - TESTNET=1
+      - SYNC_MODE=full
+      - GWEMIX_OPTS=--maxpeers=100
+#    command: /bin/bash -c "/wemix/bin/gwemix.sh start & tail -F /wemix/logs/log"
+    command: /wemix/bin/gwemix --datadir /root/geth/ --syncmode full --http --http.addr 0.0.0.0 --http.port 8588 --ws --ws.addr 0.0.0.0 --ws.port 8598
