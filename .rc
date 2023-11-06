@@ -1,0 +1,5 @@
+PORT=8588 
+DISCOVER=1        # 1 for enable discovery mode, 0 for disable discovery mode
+#TESTNET=1         # 1 for Testnet or remove this line for Mainnet
+SYNC_MODE=full
+GWEMIX_OPTS="--txpool.nolocals --snapshot=false --maxpeers=100"
